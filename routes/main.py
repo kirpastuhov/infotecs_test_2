@@ -1,7 +1,10 @@
 routes = {
-    "/" : { "template" : "index.html" }, 
+    "" : { "template" : "index.html" }, 
     
-    "/goodbye" : { "template" : "goodbye.html" },
+    "goodbye" : { "template" : "goodbye.html" },
 
-    "/geonameid/" : { "template" : "goodbye.html" },
+    "geonameid" : {},
+
+    "cmpcities" : {},
+
 }

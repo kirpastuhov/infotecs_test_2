@@ -16,31 +16,24 @@ class Server(BaseHTTPRequestHandler):
         return
 
     def do_GET(self):
-        split_path = os.path.splitext(self.path)
-        request_extension = split_path[1]
-        # print (split_path)
         query_components = parse_qs(urlparse(self.path).query)
-        print(query_components)
-        # print(request_extension)
-        if request_extension is "" or request_extension is ".html":
-            if self.path in routes:
-                handler = TemplateHandler()
-                handler.find(routes[self.path])
-            elif 'id' in query_components:
-                # print(query_components)
+        url = self.path.split("/")[1]
+        if url in routes:
+            if url == "geonameid" and "id" in query_components:
+                print(query_components)
                 geo_id = query_components["id"][0]
                 data = getbygeonameid(geo_id)
                 handler = TemplateHandler()
                 handler.func(data)
-            elif 'city1' and 'city2' in query_components:
+            elif url == "cmpcities" and "city1" and "city2" in query_components:
                 city1 = query_components['city1'][0]
                 city2 = query_components['city2'][0]
                 data = getcities(city1, city2)
                 handler = TemplateHandler()
                 handler.func(data)
             else:
-                handler = BadRequestHandler()
-
+                handler = TemplateHandler()
+                handler.find(routes[url])
         else:
             handler = BadRequestHandler()
 
