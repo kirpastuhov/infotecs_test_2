@@ -1,8 +1,3 @@
----
-title: 'Infotecs test task'
-
----
-
 Infotecs Test Task
 ===
 
