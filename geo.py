@@ -13,6 +13,8 @@ data = pd.read_csv('RU.txt', delimiter='\t', names=["geonameid", "name", "asciin
 
 data.fillna("", inplace=True)
 
+# print(len(data))
+
 def getbygeonameid(geonameid):
     """ Returns city info by its geonameid"""
 
@@ -56,7 +58,7 @@ def get_city_name_suggestions(city_name, cities):
     for c in contains_name['alternatenames']:
         if c[-1] not in suggestions:
             suggestions.append(c[-1])
-    return ({'suggestions': suggestions})
+    return ({'City not found. Suggestions': suggestions})
      
 
 def getcities(city1, city2):
@@ -105,6 +107,23 @@ def getcities(city1, city2):
         j = json.dumps(lst, indent=4, separators=(',', ': '), ensure_ascii=False, default=str)
         return(j)
 
+def cities_list_info(cities_list):
+    results = []
+    for city in cities_list:
+        info = data.loc[data['alternatenames'].str.contains(city, na=False) & 
+                    (data['feature class'] =='P')].sort_values(by=['population'], ascending=False)
+
+        city_check = check_city(city, info)
+        
+        if not city_check:
+            results.append(get_city_name_suggestions(city, info))
+            continue
+
+        city1_info = info.iloc[0]
+        results.append(city1_info.to_dict())
+    
+    j = json.dumps(results, indent=4, separators=(',', ': '), ensure_ascii=False, default=str)
+    return j
 
 def tz_diff(info1, info2):
     """ Returns the difference in hours between two timezones """
@@ -139,3 +158,6 @@ def lat_diff(info1, info2):
         return {'north':f"{info1['name']} is located north of {info2['name']}"}
     else:
         return {'north':f"{info2['name']} is located north of {info1['name']}"}
+
+
+# cities_list_info(['Заозерный', 'Рождественский'])

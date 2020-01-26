@@ -7,4 +7,6 @@ routes = {
 
     "cmpcities" : {},
 
+    "cities_list" : {},
+
 }

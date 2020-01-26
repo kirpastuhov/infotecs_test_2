@@ -8,7 +8,7 @@ from routes.main import routes
 
 from response.templateHandler import TemplateHandler
 from response.badRequestHandler import BadRequestHandler
-from geo import getbygeonameid, getcities
+from geo import getbygeonameid, getcities, cities_list_info
 
 
 class Server(BaseHTTPRequestHandler):
@@ -29,6 +29,11 @@ class Server(BaseHTTPRequestHandler):
                 city1 = query_components['city1'][0]
                 city2 = query_components['city2'][0]
                 data = getcities(city1, city2)
+                handler = TemplateHandler()
+                handler.func(data)
+            elif url == 'cities_list' and "cities_list" and "amount" in query_components:
+                cities_list = query_components['cities_list']
+                data = cities_list_info([s.strip() for s in cities_list[0].split(',')])
                 handler = TemplateHandler()
                 handler.func(data)
             else:
