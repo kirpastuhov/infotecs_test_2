@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <meta charset=”utf-8" />
@@ -9,8 +8,74 @@
 </head>
 
 <body>
-    <h1>Simple Python HTTP Server</h1>
-    <h1>{{ name }}</h1>
+    <h1 id="infotecs-test-task">Infotecs Test Task</h1>
+    <h2 id="table-of-contents">Table of Contents</h2>
+    <ul>
+        <li><a href="#Infotecs-Test-Task">Infotecs Test Task</a>
+            <ul>
+                <li><a href="#Table-of-Contetns">Table of Contetns</a></li>
+                <li><a href="#Test-task-description">Test task description</a></li>
+                <li><a href="#Avaliable-methods">Avaliable methods</a>
+                    <ul>
+                        <li><a href="#Get-by-geonameid">Get by geonameid</a></li>
+                        <li><a href="#Get-cities-info-list">Get cities info list</a></li>
+                        <li><a href="#Compare-cities-by-name">Compare cities by name</a></li>
+                    </ul>
+                </li>
+                <li><a href="#Additional-tasks">Additional tasks</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h2 id="test-task-description">Test task description</h2>
+    <p>Implement an HTTP server to provide information on geographical objects.</p>
+    <blockquote>
+        <p>Take data from the GeoNames geographical database by clicking the link: <a
+                href="http://download.geonames.org/export/dump/RU.zip">http://download.geonames.org/export/dump/RU.zip</a>.
+        </p>
+        <p>Description of the data format can be found at the link:
+            <a
+                href="http://download.geonames.org/export/dump/readme.txt">http://download.geonames.org/export/dump/readme.txt</a>
+        </p>
+    </blockquote>
+    <h2 id="getting-started">Getting started</h2>
+    <p>Get yourself a copy and start the server by pasting the following lines into your terminal:</p>
+    <pre><code>git clone http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/kirpastuhov/infotecs_test_2.git Pastukhov_Python
+<span class="hljs-keyword">cd</span> Pastukhov_Python
+<span class="hljs-keyword">python3</span> server.<span class="hljs-keyword">py</span>
+</code></pre>
+    <p>Make sure that RU.txt file is present in folder with the server</p>
+    <h2 id="avaliable-methods">Avaliable methods</h2>
+    <h4 id="get-by-geonameid">Get by geonameid</h4>
+    <p>The method accepts the geonameid identifier and returns information about the city.</p>
+    <p><img src="https://i.imgur.com/m2MnrVh.png" alt=""></p>
+    <hr>
+    <h4 id="get-cities-info-list">Get cities info list</h4>
+    <p>The method accepts the page and the number of cities displayed on the page and returns the list of cities with
+        their information. </p>
+    <p><img src="https://i.imgur.com/LyZXJso.png" alt=""></p>
+    <hr>
+    <h4 id="compare-cities-by-name">Compare cities by name</h4>
+    <p>The method accepts the names of two cities (in Russian) and gets the information about the found cities, as well
+        as additional information: which one is located to the north and whether they have the same time zone (when
+        several cities have the same name, to resolve ambiguity by choosing a city with a large population; if the
+        population is the same, take the first caught).</p>
+    <p><img src="https://i.imgur.com/HR4z2sy.png" alt=""></p>
+    <h2 id="additional-tasks-">Additional tasks:</h2>
+    <p>Additional tasks are not required, and will be taken into account if a very large number of candidates have
+        completed the main task on excellent. You can perform any combination of the proposed tasks.</p>
+    <ol>
+        <li>For the 3rd method to show the user not only the difference in time zones, but also how many hours they
+            differ.
+            Implemented in <a href="#Compare-cities-by-name">Compare cities by name</a> method</li>
+        <li>Implement a method where the user enters a part of the city name and returns a hint with possible
+            extensions.
+            Shows suggestions if city name was not found in <a href="#Compare-cities-by-name">Compare cities by name</a>
+            method and <a href="#Get-cities-info-list">Get cities info list</a>
+            <img src="https://i.imgur.com/yC7QPpp.png" alt=""></li>
+    </ol>
+
+
 </body>
+
 
 </html>

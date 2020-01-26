@@ -4,11 +4,11 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
 
-from routes.main import routes
+from routes.urls import routes
 
 from response.templateHandler import TemplateHandler
 from response.badRequestHandler import BadRequestHandler
-from geo import getbygeonameid, getcities, cities_list_info
+from geo.geo_methods import getbygeonameid, getcities, cities_list_info
 
 
 class Server(BaseHTTPRequestHandler):
@@ -62,7 +62,6 @@ class Server(BaseHTTPRequestHandler):
             content = "404 Not Found"
 
         self.end_headers()
-
         return bytes(content, 'utf-8')
 
     def respond(self, opts):

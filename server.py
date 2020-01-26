@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import time
+import pandas as pd
 from http.server import HTTPServer
 
 from main_server import Server
