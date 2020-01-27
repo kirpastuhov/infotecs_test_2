@@ -4,13 +4,16 @@ import json
 
 from geo.helpers import *
 
-
-data = pd.read_csv('RU.txt', delimiter='\t', names=["geonameid", "name", "asciiname", "alternatenames", "latitude", "longtitude", "feature class",
+try:
+    data = pd.read_csv('RU.txt', delimiter='\t', names=["geonameid", "name", "asciiname", "alternatenames", "latitude", "longtitude", "feature class",
                                                       "feature code", "country code", "cc2", "admin1 code", "admin2 code", "admin3 code", "admin4 code",
                                                       "population", "elevation", "dem", "timezone", "modification date"],
                                             low_memory=False)
 
-data.fillna("", inplace=True)
+    data.fillna("", inplace=True)
+except FileNotFoundError:
+    print("File RU.txt not found")
+    exit()
 
 
 def getbygeonameid(geonameid):
