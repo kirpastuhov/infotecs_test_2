@@ -24,18 +24,18 @@ class Server(BaseHTTPRequestHandler):
                 geo_id = query_components["id"][0]
                 data = getbygeonameid(geo_id)
                 handler = TemplateHandler()
-                handler.func(data)
+                handler.create_json(data)
             elif url == "cmpcities" and "city1" and "city2" in query_components:
                 city1 = query_components['city1'][0]
                 city2 = query_components['city2'][0]
                 data = getcities(city1, city2)
                 handler = TemplateHandler()
-                handler.func(data)
+                handler.create_json(data)
             elif url == "cities_list" and "cities_list" and "amount" in query_components:
                 cities_list = query_components["cities_list"]
                 data = cities_list_info([s.strip() for s in cities_list[0].split(",")])
                 handler = TemplateHandler()
-                handler.func(data)
+                handler.create_json(data)
             else:
                 handler = TemplateHandler()
                 handler.find(routes[url])
@@ -55,7 +55,7 @@ class Server(BaseHTTPRequestHandler):
         if status_code == 200:
             if "html" in content_type:
                 content = handler.getContents()
-            elif "plain" in content_type:
+            elif "json" in content_type:
                 content = handler.read()
             self.send_header("Content-type", content_type)
         else:

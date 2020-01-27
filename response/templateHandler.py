@@ -16,8 +16,8 @@ class TemplateHandler(RequestHandler):
             self.setStatus(404)
             return False
     
-    def func(self, data):
-        self.contentType ="text/plain; charset=utf-8"
+    def create_json(self, data):
+        self.contentType ="application/json; charset=utf-8"
         self.contents = data
         self.setStatus(200)
         return True
