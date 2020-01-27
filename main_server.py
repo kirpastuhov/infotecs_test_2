@@ -31,9 +31,9 @@ class Server(BaseHTTPRequestHandler):
                 data = getcities(city1, city2)
                 handler = TemplateHandler()
                 handler.func(data)
-            elif url == 'cities_list' and "cities_list" and "amount" in query_components:
-                cities_list = query_components['cities_list']
-                data = cities_list_info([s.strip() for s in cities_list[0].split(',')])
+            elif url == "cities_list" and "cities_list" and "amount" in query_components:
+                cities_list = query_components["cities_list"]
+                data = cities_list_info([s.strip() for s in cities_list[0].split(",")])
                 handler = TemplateHandler()
                 handler.func(data)
             else:
@@ -43,7 +43,7 @@ class Server(BaseHTTPRequestHandler):
             handler = BadRequestHandler()
 
         self.respond({
-            'handler': handler
+            "handler": handler
         })
 
     def handle_http(self, handler):
@@ -53,17 +53,17 @@ class Server(BaseHTTPRequestHandler):
         self.send_response(status_code)
 
         if status_code == 200:
-            if 'html' in content_type:
+            if "html" in content_type:
                 content = handler.getContents()
-            elif 'plain' in content_type:
+            elif "plain" in content_type:
                 content = handler.read()
-            self.send_header('Content-type', content_type)
+            self.send_header("Content-type", content_type)
         else:
             content = "404 Not Found"
 
         self.end_headers()
-        return bytes(content, 'utf-8')
+        return bytes(content, "utf-8")
 
     def respond(self, opts):
-        response = self.handle_http(opts['handler'])
+        response = self.handle_http(opts["handler"])
         self.wfile.write(response)

@@ -57,11 +57,11 @@ def getcities(city1, city2):
     if not city1_check:
         lst = get_city_name_suggestions(city1, info1)
         j = json.dumps(lst, indent=4, separators=(',', ': '), ensure_ascii=False, default=str)
-        return(j)
+        return j 
     if not city2_check:
         lst = get_city_name_suggestions(city2, info2)
         j = json.dumps(lst, indent=4, separators=(',', ': '), ensure_ascii=False, default=str)
-        return(j)
+        return j 
 
     if len(info1) < 0 or len(info2) < 0:
         return {}
@@ -80,7 +80,7 @@ def getcities(city1, city2):
         lst.append(tz_diff(city1_info, city2_info))
 
         j = json.dumps(lst, indent=4, separators=(',', ': '), ensure_ascii=False, default=str)
-        return(j)
+        return j
 
 def cities_list_info(cities_list):
     """ Returns all info for each city in cities_list """

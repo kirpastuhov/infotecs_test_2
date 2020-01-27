@@ -23,4 +23,4 @@ class RequestHandler():
         return self.contentType 
 
     def getType(self):
-        return 'static'
+        return "static"
